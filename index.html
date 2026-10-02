@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>دليل الخدمات الإلكترونية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@600;700&display=swap">
+<style>
+/* Layout: phone-app shell (max 480px) with screens switched by a bottom tab bar; soft lavender UI */
+:root{
+  --bg:#F5F4FB; --surface:#FFFFFF; --ink:#1E1B2E; --muted:#6B6880; --line:#ECEAF4;
+  --p:#7357F6; --p2:#9D8BFF; --p-soft:#EEEAFE; --on-p:#FFFFFF;
+  --b-bg:#ECEAFB; --b-ink:#3F3592; --f-bg:#E2F4EC; --f-ink:#1F5C45; --r-bg:#FBECE5; --r-ink:#7A3A1F;
+  --t1:#EEEAFE; --t2:#FDE8EA; --t3:#E2F4EC; --t4:#FFF2DA;
+  --shadow:0 8px 24px rgba(54,40,140,.07); --bar:rgba(255,255,255,.92);
+  --display:'Noto Kufi Arabic','IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --body:'IBM Plex Sans Arabic',Tahoma,'Segoe UI',sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121119; --surface:#1C1A26; --ink:#F0EEF8; --muted:#A9A5BD; --line:#2A2737;
+  --p:#8E77FF; --p2:#B3A6FF; --p-soft:#2A2445; --on-p:#FFFFFF;
+  --b-bg:#26223F; --b-ink:#C9C2FF; --f-bg:#18302A; --f-ink:#A6DCC3; --r-bg:#35251E; --r-ink:#F2BFA4;
+  --t1:#2A2445; --t2:#3A2329; --t3:#18302A; --t4:#3A3020;
+  --shadow:0 8px 24px rgba(0,0,0,.35); --bar:rgba(28,26,38,.94); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121119; --surface:#1C1A26; --ink:#F0EEF8; --muted:#A9A5BD; --line:#2A2737;
+  --p:#8E77FF; --p2:#B3A6FF; --p-soft:#2A2445; --on-p:#FFFFFF;
+  --b-bg:#26223F; --b-ink:#C9C2FF; --f-bg:#18302A; --f-ink:#A6DCC3; --r-bg:#35251E; --r-ink:#F2BFA4;
+  --t1:#2A2445; --t2:#3A2329; --t3:#18302A; --t4:#3A3020;
+  --shadow:0 8px 24px rgba(0,0,0,.35); --bar:rgba(28,26,38,.94); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.7;margin:0}
+.app{max-width:480px;margin:0 auto;padding-inline:18px;padding-block:18px calc(96px + env(safe-area-inset-bottom,0px))}
+h1,h2,h3{font-family:var(--display);font-weight:700;margin:0;line-height:1.45;text-wrap:balance}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--p);outline-offset:2px;border-radius:10px}
+.screen[hidden]{display:none!important}
+.screen{animation:in .3s ease both}
+@keyframes in{from{opacity:.4;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* top */
+.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:40px;border-radius:12px;background:var(--p);color:var(--on-p);display:grid;place-items:center;font-size:20px}
+.brand b{font-family:var(--display);font-size:17px;display:block;line-height:1.3}
+.brand small{color:var(--muted);font-size:12px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13px;font-weight:600}
+.hello{font-size:26px;margin-top:6px}
+.q{color:var(--muted);margin:0 0 14px}
+
+/* hero */
+.hero{position:relative;overflow:hidden;border-radius:24px;padding:20px 20px 20px;background:linear-gradient(135deg,var(--p) 0%,var(--p2) 100%);color:var(--on-p);min-height:186px}
+.hero small{opacity:.85;font-size:13px}
+.hero h2{font-size:21px;margin-top:2px;max-width:13em}
+.prog{height:8px;border-radius:8px;background:rgba(255,255,255,.3);overflow:hidden;margin-top:14px;max-width:62%}
+.prog i{display:block;height:100%;background:#fff;border-radius:8px;width:0;transition:width .4s}
+.hero .pct{font-size:12px;opacity:.9;margin-top:4px}
+.hero .go{margin-top:12px;display:inline-flex;align-items:center;gap:8px;background:#fff;color:#4B37C9;border:0;border-radius:14px;padding:8px 16px;font-weight:700;cursor:pointer}
+.hero .go i{width:22px;height:22px;border-radius:50%;background:var(--p);color:#fff;display:grid;place-items:center;font-style:normal;font-size:11px}
+.buddy{position:absolute;left:14px;bottom:14px;width:104px;height:104px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:62px}
+.bubble{position:absolute;left:96px;top:16px;background:#fff;color:#4B37C9;font-weight:700;font-size:13px;border-radius:14px 14px 14px 4px;padding:4px 12px}
+
+/* sections */
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:22px 0 10px}
+.sec h3{font-size:17px}
+.sec button{background:none;border:0;color:var(--p);font-weight:600;font-size:14px;cursor:pointer;padding:0}
+.list{display:grid;gap:10px}
+.row{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:var(--surface);border:0;border-radius:18px;padding:12px 14px;box-shadow:var(--shadow);cursor:pointer}
+.ic{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:23px}
+.c1{background:var(--t1)}.c2{background:var(--t2)}.c3{background:var(--t3)}.c4{background:var(--t4)}
+.row .txt{flex:1;min-width:0;display:block}
+.row .bar{display:block}
+.row b{display:block;font-size:15px}
+.row small{color:var(--muted);font-size:12.5px}
+.bar{height:6px;border-radius:6px;background:var(--line);overflow:hidden;margin-top:6px}
+.bar i{display:block;height:100%;background:var(--p);border-radius:6px;transition:width .4s}
+.chev{color:var(--muted);font-size:20px;flex:none}
+.goal{display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+.goal .ring{flex:none;width:46px;height:46px;border-radius:50%;background:conic-gradient(var(--p) var(--deg,0deg),var(--p-soft) 0);display:grid;place-items:center}
+.goal .ring span{width:34px;height:34px;border-radius:50%;background:var(--surface);display:grid;place-items:center;font-size:16px}
+.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.qk{background:none;border:0;cursor:pointer;display:grid;justify-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:0}
+.qk .ic{width:56px;height:56px;border-radius:18px;font-size:26px}
+
+/* lesson screen */
+.head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.icon-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:18px;display:grid;place-items:center}
+.head h2{font-size:17px;text-align:center;flex:1}
+.lprog{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.lprog .bar{flex:1;height:8px;margin:0}
+.stepcard{margin-top:18px;background:var(--surface);border-radius:24px;padding:22px;box-shadow:var(--shadow);min-height:230px}
+.phase{display:inline-block;background:var(--p-soft);color:var(--p);font-weight:700;font-size:12.5px;border-radius:999px;padding:2px 12px}
+.stepnum{font-family:var(--display);font-size:44px;color:var(--p);line-height:1.2;margin-top:12px}
+.steptext{font-size:19px;font-weight:600;margin-top:4px;line-height:1.8}
+.steptext code,.ltr{direction:ltr;unicode-bidi:isolate}
+code{font-family:var(--body);background:var(--p-soft);color:var(--p);padding:0 6px;border-radius:6px;font-size:.92em}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.dots i{width:8px;height:8px;border-radius:50%;background:var(--line)}
+.dots i.on{background:var(--p)}
+.cta{display:flex;gap:10px;margin-top:18px}
+.btn{flex:1;border:0;border-radius:16px;padding:14px;font-weight:700;font-size:16px;cursor:pointer}
+.btn.main{background:var(--p);color:var(--on-p);box-shadow:0 10px 22px rgba(115,87,246,.28)}
+.btn.ghost{flex:0 0 auto;padding-inline:20px;background:var(--surface);border:1px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:default}
+.watchlink{display:block;margin:14px auto 0;background:none;border:0;color:var(--p);font-weight:600;cursor:pointer}
+.done{text-align:center;padding:10px 0}
+.done .big{font-size:58px}
+
+/* video */
+.player{background:var(--surface);border-radius:20px;padding:8px;box-shadow:var(--shadow)}
+.player video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;border-radius:14px;background:#000}
+.vstate{font-size:13px;color:var(--muted);text-align:center;margin-top:8px;min-height:1.5em}
+.vstate.err{color:#C0392B}
+.chap{display:flex;align-items:center;gap:12px;width:100%;text-align:right;background:var(--surface);border:2px solid transparent;border-radius:16px;padding:10px 12px;box-shadow:var(--shadow);cursor:pointer}
+.chap[aria-current="true"]{border-color:var(--p)}
+.chap .t{margin-inline-start:auto;color:var(--muted);font-size:13px;direction:ltr;font-variant-numeric:tabular-nums}
+
+/* buildings */
+.decoder{background:var(--surface);border-radius:24px;padding:20px 14px;box-shadow:var(--shadow);text-align:center}
+.tiles{display:flex;justify-content:center;gap:12px;direction:ltr}
+.tile{width:96px}
+.tile b{display:grid;place-items:center;aspect-ratio:1;border-radius:22px;font-size:46px;font-weight:600;transition:transform .25s}
+.tile small{display:block;color:var(--muted);font-size:13px;margin-top:4px}
+.tb b{background:var(--b-bg);color:var(--b-ink)}.tf b{background:var(--f-bg);color:var(--f-ink)}.tr b{background:var(--r-bg);color:var(--r-ink)}
+.tile b.bump{transform:scale(1.08)}
+.read{font-family:var(--display);font-size:17px;margin-top:12px}
+.read.err{color:#C0392B;font-family:var(--body);font-size:14px;font-weight:600}
+.codein{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:14px;flex-wrap:wrap}
+.codein label{font-size:13px;color:var(--muted)}
+.codein input{font:inherit;font-size:20px;font-weight:700;letter-spacing:3px;width:110px;text-align:center;direction:ltr;text-transform:uppercase;border:2px solid var(--line);border-radius:14px;padding:4px 8px;background:var(--bg);color:var(--ink)}
+.seglab{font-size:12.5px;color:var(--muted);margin-top:12px}
+.seg{display:flex;gap:6px;justify-content:center;margin-top:4px;flex-wrap:wrap}
+.seg button{min-width:44px;border-radius:12px;border:1px solid var(--line);background:var(--bg);font-weight:700;padding:4px 12px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--p);color:var(--on-p);border-color:var(--p)}
+.parts{display:grid;gap:10px;margin-top:14px}
+.part{border-radius:18px;padding:14px 16px}
+.part h3{font-size:16px}
+.part p,.part ul{margin:4px 0 0;padding:0;list-style:none}
+.pb{background:var(--b-bg);color:var(--b-ink)}.pf{background:var(--f-bg);color:var(--f-ink)}.pr{background:var(--r-bg);color:var(--r-ink)}
+
+/* help */
+details{background:var(--surface);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);margin-bottom:10px}
+summary{cursor:pointer;font-weight:600}
+details p{margin:6px 0 0;color:var(--muted)}
+.link{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);background:var(--surface);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
+.link span{margin-inline-start:auto;color:var(--muted);font-size:12.5px;direction:ltr}
+.foot{text-align:center;color:var(--muted);font-size:12.5px;margin-top:22px}
+
+/* tab bar */
+.tabbar{position:fixed;bottom:0;left:0;right:0;background:var(--bar);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px);z-index:10}
+.tabbar .in{max-width:480px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.tab{background:none;border:0;cursor:pointer;padding:10px 0 8px;display:grid;justify-items:center;gap:2px;font-size:11.5px;color:var(--muted);font-weight:600}
+.tab .ti{font-size:20px;line-height:1.2;filter:grayscale(1);opacity:.75}
+.tab[aria-current="page"]{color:var(--p)}
+.tab[aria-current="page"] .ti{filter:none;opacity:1}
+@media (prefers-reduced-motion:reduce){.screen{animation:none}.prog i,.bar i,.tile b{transition:none}}
+</style>
+</head>
+<body>
+
+
+<div class="app" dir="rtl" lang="ar">
+
+<!-- HOME -->
+<section class="screen" id="s-home">
+  <div class="top">
+    <div class="brand"><div class="logo" aria-hidden="true">🎓</div><div><b>دليلك</b><small>الخدمات الإلكترونية</small></div></div>
+    <span class="pill">مشروع طالبات</span>
+  </div>
+  <h1 class="hello">أهلًا بك 👋</h1>
+  <p class="q">وش تبين تنجزين اليوم؟</p>
+
+  <div class="hero">
+    <small>ابدئي من هنا</small>
+    <h2>شاهدي شرح الخدمات خطوة بخطوة</h2>
+    <div class="prog"><i id="heroBar"></i></div>
+    <div class="pct" id="heroPct">لم تبدئي بعد</div>
+    <button class="go" type="button" data-open="video">تابعي المشاهدة <i>◀</i></button>
+    <div class="buddy" aria-hidden="true">👩‍🎓</div><div class="bubble" aria-hidden="true">أهلًا!</div>
+  </div>
+
+  <div class="sec"><h3>الخدمات</h3><button type="button" data-open="services">عرض الكل</button></div>
+  <div class="list" id="homeList"></div>
+
+  <div class="sec"><h3>هدف اليوم</h3></div>
+  <div class="goal"><div class="ring" id="goalRing"><span>🎯</span></div><div style="flex:1;min-width:0"><b>أكملي خطوات خدمة وحدة على الأقل</b><div class="bar"><i id="goalBar" style="width:0"></i></div><small id="goalTxt" style="color:var(--muted)">٠ من ٣ خدمات</small></div></div>
+
+  <div class="sec"><h3>وصول سريع</h3></div>
+  <div class="quick">
+    <button class="qk" type="button" data-svc="taqni"><span class="ic c1">💻</span>تقني</button>
+    <button class="qk" type="button" data-svc="mfa"><span class="ic c2">🔐</span>المصادقة</button>
+    <button class="qk" type="button" data-svc="iban"><span class="ic c3">🏦</span>الآيبان</button>
+    <button class="qk" type="button" data-open="buildings"><span class="ic c4">🏫</span>المباني</button>
+  </div>
+  <p class="foot">مشروع تعليمي من طالبات الكلية التقنية للبنات بعنيزة · دليل غير رسمي</p>
+</section>
+
+<!-- SERVICES LIST -->
+<section class="screen" id="s-services" hidden>
+  <h1 class="hello" style="margin-bottom:4px">الخدمات</h1>
+  <p class="q">اختاري الخدمة وامشي معها خطوة بخطوة.</p>
+  <div class="list" id="svcList"></div>
+</section>
+
+<!-- LESSON -->
+<section class="screen" id="s-lesson" hidden>
+  <div class="head">
+    <button class="icon-btn" type="button" id="back" aria-label="رجوع">→</button>
+    <h2 id="lTitle"></h2>
+    <button class="icon-btn" type="button" id="restart" aria-label="ابدئي من أول خطوة">↺</button>
+  </div>
+  <div class="lprog"><span id="lCount">1 / 10</span><div class="bar"><i id="lBar" style="width:10%"></i></div></div>
+  <div class="stepcard" id="stepcard" aria-live="polite"></div>
+  <div class="dots" id="dots"></div>
+  <div class="cta">
+    <button class="btn ghost" type="button" id="prev">السابق</button>
+    <button class="btn main" type="button" id="next">التالي</button>
+  </div>
+  <button class="watchlink" type="button" id="watchPart">▶ شاهدي هذا الجزء في الفيديو</button>
+</section>
+
+<!-- VIDEO -->
+<section class="screen" id="s-video" hidden>
+  <h1 class="hello" style="margin-bottom:10px">الفيديو</h1>
+  <div class="player"><video id="vid" controls playsinline preload="none" poster="poster.jpg"></video></div>
+  <div class="vstate" id="vstate">اضغطي تشغيل لتحميل الفيديو</div>
+  <div class="sec"><h3>الفصول</h3></div>
+  <div class="list" id="chapList"></div>
+</section>
+
+<!-- BUILDINGS -->
+<section class="screen" id="s-buildings" hidden>
+  <h1 class="hello" style="margin-bottom:4px">المباني</h1>
+  <p class="q">دليل قراءة رموز القاعات: المبنى، ثم الدور، ثم رقم القاعة.</p>
+  <div class="decoder">
+    <div class="tiles" aria-live="polite">
+      <div class="tile tb"><b id="tb">A</b><small>المبنى</small></div>
+      <div class="tile tf"><b id="tf">F</b><small>الدور</small></div>
+      <div class="tile tr"><b id="tr">5</b><small>القاعة</small></div>
+    </div>
+    <div class="read" id="read"></div>
+    <div class="codein"><label for="code">اكتبي رمز القاعة</label><input id="code" maxlength="3" value="AF5" autocomplete="off" spellcheck="false"></div>
+    <div class="seglab">المبنى</div><div class="seg" data-part="b"><button type="button">A</button><button type="button">B</button><button type="button">C</button></div>
+    <div class="seglab">الدور</div><div class="seg" data-part="f"><button type="button">G</button><button type="button">F</button><button type="button">S</button></div>
+    <div class="seglab">القاعة</div><div class="seg" data-part="r"><button type="button">1</button><button type="button">2</button><button type="button">5</button><button type="button">6</button></div>
+  </div>
+  <div class="parts">
+    <div class="part pb"><h3>١. المبنى (الحرف الأول)</h3><p>ثلاثة مبانٍ: <span class="ltr">A ، B ، C</span></p></div>
+    <div class="part pf"><h3>٢. الدور (الحرف الثاني)</h3><ul><li><span class="ltr">G</span> = الدور الأرضي</li><li><span class="ltr">F</span> = الدور الأول</li><li><span class="ltr">S</span> = الدور الثاني</li></ul></div>
+    <div class="part pr"><h3>٣. رقم القاعة (الرقم)</h3><p>الأرقام المستخدمة: 1 ، 2 ، 5 ، 6</p></div>
+  </div>
+</section>
+
+<!-- HELP -->
+<section class="screen" id="s-help" hidden>
+  <h1 class="hello" style="margin-bottom:10px">مساعدة</h1>
+  <div class="sec" style="margin-top:0"><h3>أسئلة شائعة</h3></div>
+  <details><summary>ما وصلني رمز التحقق، وش أسوي؟</summary><p>انتظري دقيقة واطلبي الرمز مرة ثانية، وتأكدي إن رقم جوالك المسجل صحيح. إذا استمرت المشكلة تواصلي مع الوحدة التدريبية.</p></details>
+  <details><summary>غيّرت جوالي، هل أحتاج أسوي شي؟</summary><p>إي، ادخلي «معلومات الأمان» وحدّثي رقم الجوال، وانقلي حسابك في تطبيق المصادقة للجوال الجديد قبل ما تمسحينه من القديم.</p></details>
+  <details><summary>متى ينقبل طلب الآيبان؟</summary><p>حسب تعليمات الخدمة، الطلب يُقبل آليًا خلال ٢٤ ساعة، وتوصلك رسالة عند قبوله أو رفضه. والأفضل تقدمين بعد نزول مكافأة الشهر وقبل يوم ٢٠ من الشهر اللي بعده.</p></details>
+  <details><summary>وصلتني رسالة بطلب آيبان ما قدّمته</summary><p>غيّري كلمة المرور فورًا، وألغي الطلب، وبلّغي الوحدة التدريبية.</p></details>
+  <details><summary>هل أقدر أشارك رمز التحقق مع أحد يساعدني؟</summary><p>لا، رمز التحقق لك أنتِ بس، والكلية ما تطلبه منك برسالة أو اتصال.</p></details>
+  <div class="sec"><h3>روابط مهمة</h3></div>
+  <a class="link" href="https://tvtclms.edu.sa" target="_blank" rel="noopener"><span class="ic c1" style="margin:0">💻</span>منصة تقني<span>tvtclms.edu.sa</span></a>
+  <a class="link" href="https://aka.ms/mysecurityinfo" target="_blank" rel="noopener"><span class="ic c2" style="margin:0">🔐</span>معلومات الأمان<span>aka.ms/mysecurityinfo</span></a>
+  <a class="link" href="https://tvtc.gov.sa" target="_blank" rel="noopener"><span class="ic c3" style="margin:0">🏛️</span>موقع المؤسسة ورايات<span>tvtc.gov.sa</span></a>
+  <p class="foot">مشروع تعليمي من طالبات الكلية التقنية للبنات بعنيزة · دليل غير رسمي</p>
+</section>
+
+<nav class="tabbar" aria-label="التنقل"><div class="in" dir="rtl">
+  <button class="tab" type="button" data-tab="home" aria-current="page"><span class="ti">🏠</span>الرئيسية</button>
+  <button class="tab" type="button" data-tab="services"><span class="ti">📋</span>الخدمات</button>
+  <button class="tab" type="button" data-tab="video"><span class="ti">▶️</span>الفيديو</button>
+  <button class="tab" type="button" data-tab="buildings"><span class="ti">🏫</span>المباني</button>
+  <button class="tab" type="button" data-tab="help"><span class="ti">💬</span>مساعدة</button>
+</div></nav>
+</div>
+
+<script>
+(function(){
+try{document.documentElement.setAttribute('dir','rtl');document.documentElement.setAttribute('lang','ar');}catch(e){}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+
+var SVC=[
+ {id:'taqni',ic:'💻',c:'c1',name:'منصة تقني',sub:'الدخول واستعادة كلمة المرور',t:20.2,steps:[
+  ['تسجيل الدخول','ابحثي في قوقل عن «منصة تقني» وافتحي الموقع الرسمي <code>tvtclms.edu.sa</code>.'],
+  ['تسجيل الدخول','اضغطي «تسجيل الدخول» من الصفحة الرئيسية.'],
+  ['تسجيل الدخول','اكتبي بريدك التدريبي: رقمك التدريبي ثم <code>@tvtc.edu.sa</code>، واضغطي «التالي».'],
+  ['تسجيل الدخول','أدخلي كلمة المرور واضغطي «تسجيل الدخول».'],
+  ['تسجيل الدخول','عند سؤال «الإبقاء على تسجيل الدخول؟» اختاري «لا» إذا الجهاز مو جهازك الشخصي.'],
+  ['تسجيل الدخول','توصلين لصفحة مقرراتك التدريبية.'],
+  ['نسيت كلمة المرور','من بوابة «رايات» اضغطي «هل نسيت كلمة المرور؟».'],
+  ['نسيت كلمة المرور','اكتبي بريدك التدريبي والأحرف اللي في الصورة، ثم «التالي».'],
+  ['نسيت كلمة المرور','اختاري «إرسال رسالة نصية»، اكتبي رقم جوالك واضغطي «نص».'],
+  ['نسيت كلمة المرور','توصلك رسالة فيها رمز التحقق، أدخليه واختاري كلمة مرور جديدة.']]},
+ {id:'mfa',ic:'🔐',c:'c2',name:'المصادقة الثنائية',sub:'في رايات',t:106.6,steps:[
+  ['تسجيل الدخول','افتحي الرابط <code>aka.ms/mysecurityinfo</code>.'],
+  ['تسجيل الدخول','اكتبي بريدك التدريبي واضغطي «التالي».'],
+  ['تسجيل الدخول','أدخلي كلمة المرور واضغطي «تسجيل الدخول».'],
+  ['تسجيل الدخول','تفتح لك صفحة «معلومات الأمان».'],
+  ['إضافة الجوال','اضغطي «إضافة أسلوب تسجيل الدخول» واختاري «الهاتف» ثم «إضافة».'],
+  ['إضافة الجوال','اختاري السعودية (+966)، اكتبي رقم جوالك واختاري «استلام رمز».'],
+  ['إضافة الجوال','اكتبي الرمز اللي يوصلك برسالة، وتظهر «اكتملت عملية التحقق».'],
+  ['تطبيق المصادقة','اضغطي «إضافة أسلوب» مرة ثانية واختاري «تطبيق مصدق».'],
+  ['تطبيق المصادقة','حمّلي تطبيق Microsoft Authenticator على جوالك واضغطي «التالي».'],
+  ['تطبيق المصادقة','في التطبيق: ＋ ثم «حساب العمل أو المؤسسة التعليمية» ثم «مسح رمز QR».'],
+  ['تطبيق المصادقة','امسحي رمز QR اللي على الشاشة واضغطي «التالي».'],
+  ['تطبيق المصادقة','وافقي على الإشعار في التطبيق، وصار حسابك محمي.']]},
+ {id:'iban',ic:'🏦',c:'c3',name:'إضافة الآيبان',sub:'عبر رايات',t:179.3,steps:[
+  ['الدخول على Banner','افتحي المتصفح في «وضع التصفح المتخفي» (<span class="ltr">Ctrl + Shift + N</span>).'],
+  ['الدخول على Banner','ادخلي رايات واختاري «الخدمات الذاتية للمتدربين»، وسجّلي دخولك.'],
+  ['الدخول على Banner','اضغطي أيقونة القائمة ▦ فوق، ثم «نظام Banner».'],
+  ['اختيار الخدمة','في «الخدمة» اختاري «طلب إضافة/تحديث آيبان متدرب» واضغطي «المتابعة».'],
+  ['اختيار الخدمة','اقرئي التعليمات وانزلي تحت واضغطي «المتابعة».'],
+  ['تعبئة الطلب','البنك الحالي: «لا يوجد» إذا ما عندك حساب سابق، واتركي رقم الآيبان الحالي فاضي.'],
+  ['تعبئة الطلب','البنك الجديد: البنك اللي تبين المكافأة تنزل فيه.'],
+  ['تعبئة الطلب','اكتبي الآيبان الجديد مرتين بيدك وبدون مسافات: ٢٤ خانة تبدأ بـ <code>SA</code>.'],
+  ['تعبئة الطلب','اختاري «نعم» في الإقرارين، واتركي التعليقات فاضية، واضغطي «حفظ».'],
+  ['تعبئة الطلب','تابعي حالة طلبك، وتوصلك رسالة عند قبوله.']]}
+];
+var CHAPS=[{n:'المقدمة',t:0,ic:'👋',c:'c4'}].concat(SVC.map(function(s){return {n:s.name,t:s.t,ic:s.ic,c:s.c};}));
+var ar=function(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤٥٦٧٨٩'[d];});};
+var done=store.get('done',{});   // id -> furthest step reached (count)
+
+/* ---------- navigation ---------- */
+var screens={home:'s-home',services:'s-services',lesson:'s-lesson',video:'s-video',buildings:'s-buildings',help:'s-help'};
+var vid=document.getElementById('vid');
+function show(name){
+  Object.keys(screens).forEach(function(k){document.getElementById(screens[k]).hidden=(k!==name);});
+  var tab=name==='lesson'?'services':name;
+  document.querySelectorAll('.tab').forEach(function(t){if(t.dataset.tab===tab)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current');});
+  if(name!=='video'){try{vid.pause();}catch(e){}}else{loadVideo();}
+  window.scrollTo(0,0);
+  if(name==='home'||name==='services')renderLists();
+}
+document.querySelectorAll('.tab').forEach(function(t){t.addEventListener('click',function(){show(t.dataset.tab);});});
+document.addEventListener('click',function(e){
+  var o=e.target.closest('[data-open]');if(o){show(o.dataset.open);return;}
+  var s=e.target.closest('[data-svc]');if(s){openLesson(s.dataset.svc);}
+});
+
+/* ---------- lists ---------- */
+function rowHTML(s){
+  var n=Math.min(done[s.id]||0,s.steps.length),p=Math.round(n/s.steps.length*100);
+  return '<button class="row" type="button" data-svc="'+s.id+'"><span class="ic '+s.c+'">'+s.ic+'</span><span class="txt"><b>'+s.name+'</b><small>'+(n===s.steps.length?'مكتملة ✔':ar(n)+' من '+ar(s.steps.length)+' خطوات · '+s.sub)+'</small><span class="bar"><i style="width:'+p+'%"></i></span></span><span class="chev">‹</span></button>';
+}
+function renderLists(){
+  var h=SVC.map(rowHTML).join('');
+  document.getElementById('homeList').innerHTML=h;
+  document.getElementById('svcList').innerHTML=h;
+  var full=SVC.filter(function(s){return (done[s.id]||0)>=s.steps.length;}).length;
+  document.getElementById('goalBar').style.width=Math.min(100,full/1*100)+'%';
+  document.getElementById('goalRing').style.setProperty('--deg',(full/3*360)+'deg');
+  document.getElementById('goalTxt').textContent=ar(full)+' من ٣ خدمات مكتملة';
+  var w=store.get('watched',0),pct=Math.round(w*100);
+  document.getElementById('heroBar').style.width=pct+'%';
+  document.getElementById('heroPct').textContent=pct?('شاهدتِ '+ar(pct)+'٪'):'لم تبدئي بعد';
+}
+
+/* ---------- lesson ---------- */
+var cur=null,idx=0;
+function openLesson(id){cur=SVC.filter(function(s){return s.id===id;})[0];idx=Math.min(done[id]||0,cur.steps.length-1);if((done[id]||0)>=cur.steps.length)idx=cur.steps.length;show('lesson');drawStep();}
+function drawStep(){
+  var N=cur.steps.length,card=document.getElementById('stepcard');
+  document.getElementById('lTitle').textContent=cur.name;
+  var shown=Math.min(idx+1,N);
+  document.getElementById('lCount').textContent=shown+' / '+N;
+  document.getElementById('lBar').style.width=(Math.min(idx,N)/N*100)+'%';
+  if(idx>=N){
+    card.innerHTML='<div class="done"><div class="big">🎉</div><h3>خلصتي «'+cur.name+'»</h3><p style="color:var(--muted);margin:6px 0 0">أحسنتِ! جربي الخدمة اللي بعدها.</p></div>';
+    document.getElementById('lBar').style.width='100%';
+  }else{
+    var st=cur.steps[idx];
+    card.innerHTML='<span class="phase">'+st[0]+'</span><div class="stepnum">'+ar(idx+1)+'</div><div class="steptext">'+st[1]+'</div>';
+  }
+  var d='';for(var i=0;i<N;i++)d+='<i class="'+(i<=idx?'on':'')+'"></i>';document.getElementById('dots').innerHTML=d;
+  document.getElementById('prev').disabled=idx===0;
+  var nx=document.getElementById('next');
+  if(idx>=N){var nxt=SVC[(SVC.indexOf(cur)+1)%SVC.length];nx.textContent='الخدمة التالية: '+nxt.name;}
+  else nx.textContent=idx===N-1?'تم ✔':'التالي';
+}
+document.getElementById('next').addEventListener('click',function(){
+  var N=cur.steps.length;
+  if(idx>=N){openLesson(SVC[(SVC.indexOf(cur)+1)%SVC.length].id);return;}
+  idx++;done[cur.id]=Math.max(done[cur.id]||0,idx);store.set('done',done);drawStep();
+});
+document.getElementById('prev').addEventListener('click',function(){if(idx>0){idx--;drawStep();}});
+document.getElementById('restart').addEventListener('click',function(){idx=0;drawStep();});
+document.getElementById('back').addEventListener('click',function(){show('services');});
+document.getElementById('watchPart').addEventListener('click',function(){show('video');playAt(cur.t);});
+
+/* ---------- video: try embedded copy first, then the published file ---------- */
+var vs=document.getElementById('vstate'),loading=null,pending=null,tries=[],ti=0;
+function setState(t,err){vs.textContent=t;vs.classList.toggle('err',!!err);}
+function nextSource(){
+  if(ti>=tries.length){setState('ما قدر الفيديو يشتغل على هذا الجهاز (رمز '+(vid.error?vid.error.code:'؟')+'). جربي من متصفح ثاني.',true);return;}
+  var f=tries[ti++];f();
+}
+function loadVideo(){
+  if(loading)return loading;
+  loading=true;
+  tries=[
+    function(){setState('جاري تحميل الفيديو…');vid.src='guide.mp4';vid.load();},
+    function(){var el=document.getElementById('vdata');if(!el){nextSource();return;}setState('جاري تجهيز الفيديو…');vid.src='data:video/mp4;base64,'+el.textContent.trim();vid.load();},
+    function(){setState('جاري تحميل الفيديو…');fetch('guide.mp4').then(function(r){if(!r.ok)throw 0;return r.blob();}).then(function(bl){vid.src=URL.createObjectURL(new Blob([bl],{type:'video/mp4'}));vid.load();}).catch(function(){nextSource();});},
+    function(){vid.src='guide.mp4';vid.load();}
+  ];
+  nextSource();
+  return loading;
+}
+vid.addEventListener('error',function(){if(loading)nextSource();});
+vid.addEventListener('canplay',function(){setState('');});
+vid.addEventListener('loadedmetadata',function(){if(pending!==null){try{vid.currentTime=pending;}catch(e){}var p=vid.play();if(p&&p.catch)p.catch(function(){});pending=null;}});
+function playAt(t){
+  if(vid.readyState>=1){try{vid.currentTime=t;}catch(e){}var p=vid.play();if(p&&p.catch)p.catch(function(){});}
+  else{pending=t;loadVideo();}
+}
+vid.addEventListener('click',function(){if(!vid.currentSrc){pending=0;loadVideo();}});
+document.querySelector('.player').addEventListener('click',function(){if(!vid.currentSrc&&!loading){pending=0;loadVideo();}});
+var lastSave=0;
+vid.addEventListener('timeupdate',function(){
+  var ci=0;CHAPS.forEach(function(c,i){if(vid.currentTime>=c.t-.1)ci=i;});
+  document.querySelectorAll('.chap').forEach(function(b,i){b.setAttribute('aria-current',i===ci?'true':'false');});
+  if(vid.duration&&Date.now()-lastSave>2000){lastSave=Date.now();var w=Math.max(store.get('watched',0),vid.currentTime/vid.duration);store.set('watched',w);}
+});
+document.getElementById('chapList').innerHTML=CHAPS.map(function(c){
+  var m=Math.floor(c.t/60),s=('0'+Math.floor(c.t%60)).slice(-2);
+  return '<button class="chap" type="button" data-t="'+c.t+'"><span class="ic '+c.c+'">'+c.ic+'</span><b>'+c.n+'</b><span class="t">'+m+':'+s+'</span></button>';}).join('');
+document.getElementById('chapList').addEventListener('click',function(e){var b=e.target.closest('.chap');if(b)playAt(parseFloat(b.dataset.t));});
+document.querySelector('.hero .go').addEventListener('click',function(){var w=store.get('watched',0);setTimeout(function(){playAt(w>0.02&&w<0.98?w*261.8:0);},50);});
+
+/* ---------- buildings ---------- */
+var BN={A:'مبنى A',B:'مبنى B',C:'مبنى C'},FL={G:'الدور الأرضي',F:'الدور الأول',S:'الدور الثاني'},RM={'1':1,'2':1,'5':1,'6':1};
+var st={b:'A',f:'F',r:'5'},code=document.getElementById('code'),read=document.getElementById('read');
+var tiles={b:document.getElementById('tb'),f:document.getElementById('tf'),r:document.getElementById('tr')};
+function bump(el){el.classList.remove('bump');void el.offsetWidth;el.classList.add('bump');setTimeout(function(){el.classList.remove('bump');},250);}
+function drawCode(fromInput){
+  ['b','f','r'].forEach(function(k){if(tiles[k].textContent!==st[k]){tiles[k].textContent=st[k];bump(tiles[k]);}});
+  document.querySelectorAll('.seg').forEach(function(s){s.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',b.textContent===st[s.dataset.part]?'true':'false');});});
+  read.classList.remove('err');read.textContent=BN[st.b]+' · '+FL[st.f]+' · القاعة '+st.r;
+  if(!fromInput)code.value=st.b+st.f+st.r;
+}
+document.querySelectorAll('.seg').forEach(function(s){s.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;st[s.dataset.part]=b.textContent;drawCode();});});
+code.addEventListener('input',function(){
+  var c=code.value.toUpperCase().replace(/\s/g,'');
+  if(c.length<3){read.classList.remove('err');read.textContent='اكتبي ثلاث خانات، مثل AF5';return;}
+  if(!BN[c[0]]){read.classList.add('err');read.textContent='الحرف الأول لازم يكون A أو B أو C';return;}
+  if(!FL[c[1]]){read.classList.add('err');read.textContent='الحرف الثاني لازم يكون G أو F أو S';return;}
+  if(!RM[c.slice(2)]){read.classList.add('err');read.textContent='رقم القاعة لازم يكون 1 أو 2 أو 5 أو 6';return;}
+  st={b:c[0],f:c[1],r:c.slice(2)};drawCode(true);
+});
+drawCode();
+renderLists();
+})();
+</script>
+</body>
+</html>
