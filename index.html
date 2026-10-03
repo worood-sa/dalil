@@ -139,6 +139,11 @@ code{font-family:var(--body);background:var(--p-soft);color:var(--p);padding:0 6
 .part p,.part ul{margin:4px 0 0;padding:0;list-style:none}
 .pb{background:var(--b-bg);color:var(--b-ink)}.pf{background:var(--f-bg);color:var(--f-ink)}.pr{background:var(--r-bg);color:var(--r-ink)}
 
+.mapcard{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;background:linear-gradient(135deg,var(--p) 0%,var(--p2) 100%);border-radius:20px;padding:16px;margin-bottom:14px;box-shadow:0 10px 22px rgba(115,87,246,.28)}
+.mapcard .mi{flex:none;width:52px;height:52px;border-radius:16px;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:28px}
+.mapcard b{display:block;font-family:var(--display);font-size:17px;line-height:1.5}
+.mapcard small{opacity:.9;font-size:13px}
+.mapcard .arr{margin-inline-start:auto;font-size:22px}
 /* help */
 details{background:var(--surface);border-radius:16px;padding:12px 16px;box-shadow:var(--shadow);margin-bottom:10px}
 summary{cursor:pointer;font-weight:600}
@@ -191,7 +196,7 @@ details p{margin:6px 0 0;color:var(--muted)}
     <button class="qk" type="button" data-svc="taqni"><span class="ic c1">💻</span>تقني</button>
     <button class="qk" type="button" data-svc="mfa"><span class="ic c2">🔐</span>المصادقة</button>
     <button class="qk" type="button" data-svc="iban"><span class="ic c3">🏦</span>الآيبان</button>
-    <button class="qk" type="button" data-open="buildings"><span class="ic c4">🏫</span>المباني</button>
+    <a class="qk" href="map.html" style="text-decoration:none;color:inherit"><span class="ic c4">🗺️</span>الخريطة</a>
   </div>
   <p class="foot">مشروع تعليمي من طالبات الكلية التقنية للبنات بعنيزة · دليل غير رسمي</p>
 </section>
@@ -233,6 +238,7 @@ details p{margin:6px 0 0;color:var(--muted)}
 <section class="screen" id="s-buildings" hidden>
   <h1 class="hello" style="margin-bottom:4px">المباني</h1>
   <p class="q">دليل قراءة رموز القاعات: المبنى، ثم الدور، ثم رقم القاعة.</p>
+  <a class="mapcard" href="map.html"><span class="mi">🗺️</span><span><b>خريطة الكلية المتحركة</b><small>اكتبي رمز القاعة ويرسم لك الطريق، وشوفي أماكن الكلية</small></span><span class="arr">‹</span></a>
   <div class="decoder">
     <div class="tiles" aria-live="polite">
       <div class="tile tb"><b id="tb">A</b><small>المبنى</small></div>
