@@ -333,6 +333,12 @@ body{background:radial-gradient(1200px 500px at 100% -10%,#2A2152 0%,transparent
 #splash .sl-photo img{display:block;width:100%;height:100%;object-fit:cover;border-radius:28px;border:3px solid rgba(255,255,255,.12)}
 #splash .sl-photo .sl-hi.h1{top:-12px;left:-6px}
 #splash .sl-photo .sl-hi.h2{bottom:-12px;right:-6px}
+
+#splash .sl-bar{display:block;align-self:center;margin-top:auto;width:180px;background:rgba(255,255,255,.12)}
+#splash .sl-bar i{background:linear-gradient(90deg,#A897FF,#FFC6A1);animation-duration:2.4s;animation-delay:0s}
+#splash .sl-tip{animation-delay:.5s}
+#splash .sl-icons div,#splash .sl-icons span{animation-duration:.4s}
+#splash{cursor:pointer;transition:opacity .4s ease,visibility .4s}
 </style>
 </head>
 <body>
@@ -352,7 +358,6 @@ body{background:radial-gradient(1200px 500px at 100% -10%,#2A2152 0%,transparent
   </div>
   <div class="sl-tip" id="slTip" aria-live="polite"></div>
   <div class="sl-bar"><i></i></div>
-  <div class="sl-btns"><button class="sl-s" type="button" id="slSkip2">تخطي</button><button class="sl-go" type="button" id="slGo">ابدئي الآن<i>←</i></button></div>
   <div class="sl-note">مشروع طالبات · دليل غير رسمي</div>
 </div>
 <div class="app" dir="rtl" lang="ar">
@@ -670,9 +675,8 @@ renderLists();
   function close(){sp.classList.add('out');try{sessionStorage.setItem('splashSeen','1');}catch(e){}setTimeout(function(){sp.hidden=true;},600);}
   if(seen){sp.hidden=true;return;}
   document.getElementById('slSkip').addEventListener('click',close);
-  document.getElementById('slSkip2').addEventListener('click',close);
-  document.getElementById('slGo').addEventListener('click',close);
-  setTimeout(close,6000);
+  sp.addEventListener('click',close);
+  setTimeout(close,2500);
 })();
 </script>
 </body>
