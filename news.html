@@ -528,13 +528,28 @@ ${list}
   try { inline = JSON.parse(document.getElementById("seed").textContent); } catch {}
   if (inline) setData(inline);
   // news.json next to this page (optional): used when it is newer than the copy built into the page
+  // opened from the homepage card: news.html?q=...  (and &ask=gpt|claude to go straight to the AI)
+  let fromUrlDone = false;
+  function fromUrl(){
+    if (fromUrlDone) return; fromUrlDone = true;
+    let q = "", ask = "";
+    try { const u = new URLSearchParams(location.search); q = (u.get("q") || "").trim(); ask = u.get("ask") || ""; } catch {}
+    if (!q) return;
+    $("q").value = q;
+    if (ask === "gpt" || ask === "claude"){
+      const base = ask === "gpt" ? "https://chatgpt.com/?q=" : "https://claude.ai/new?q=";
+      location.replace(base + encodeURIComponent(askPrompt(q)));
+      return;
+    }
+    exactSearch(q);
+  }
   fetch("news.json?v=" + Date.now(), { cache: "no-store" }).then(r => r.ok ? r.json() : Promise.reject()).then(n => {
     if (!n || !Array.isArray(n.posts)) return;
     if (inline && (n.updated || "") < (inline.updated || "")) return;
     setData(n);
   }).catch(() => {
     if (!inline){ showResults([], null); $("results").firstChild.textContent = "تعذّر تحميل الأخبار. حدّث الصفحة."; }
-  });
+  }).finally(() => { if (posts.length) fromUrl(); });
 
 })();
 </script>
