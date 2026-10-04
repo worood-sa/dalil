@@ -410,6 +410,8 @@ body{background:radial-gradient(1200px 500px at 100% -10%,#2A2152 0%,transparent
     .nb-ask{font:inherit;font-size:12.5px;font-weight:600;border:1px solid var(--p);background:var(--p-soft);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
   </style>
 
+  <a class="link" href="#" data-open="staff" style="margin-top:14px"><span class="ic c2" style="margin:0">📇</span><span style="flex:1"><b style="display:block">تواصلي مع الإدارة</b><small style="color:var(--muted)">إيميلات العمادة والأقسام</small></span><span aria-hidden="true">◀</span></a>
+
   <div class="sec"><h3>الخدمات</h3><button type="button" data-open="services">عرض الكل</button></div>
   <div class="list" id="homeList"></div>
 
@@ -486,11 +488,118 @@ body{background:radial-gradient(1200px 500px at 100% -10%,#2A2152 0%,transparent
   <details><summary>وصلتني رسالة بطلب آيبان ما قدّمته</summary><p>غيّري كلمة المرور فورًا، وألغي الطلب، وبلّغي الوحدة التدريبية.</p></details>
   <details><summary>هل أقدر أشارك رمز التحقق مع أحد يساعدني؟</summary><p>لا، رمز التحقق لك أنتِ بس، والكلية ما تطلبه منك برسالة أو اتصال.</p></details>
   <div class="sec"><h3>روابط مهمة</h3></div>
+  <a class="link" href="#" data-open="staff"><span class="ic c4" style="margin:0">📇</span>تواصلي مع الإدارة<span>إيميلات الأقسام</span></a>
   <a class="link" href="https://tvtclms.edu.sa" target="_blank" rel="noopener"><span class="ic c1" style="margin:0">💻</span>منصة تقني<span>tvtclms.edu.sa</span></a>
   <a class="link" href="https://aka.ms/mysecurityinfo" target="_blank" rel="noopener"><span class="ic c2" style="margin:0">🔐</span>معلومات الأمان<span>aka.ms/mysecurityinfo</span></a>
   <a class="link" href="https://tvtc.gov.sa" target="_blank" rel="noopener"><span class="ic c3" style="margin:0">🏛️</span>موقع المؤسسة ورايات<span>tvtc.gov.sa</span></a>
   <p class="foot">مشروع تعليمي من طالبات الكلية التقنية للبنات بعنيزة · دليل غير رسمي</p>
 </section>
+
+<section class="screen" id="s-staff" hidden>
+  <button class="st-back" type="button" data-open="home">→ الرئيسية</button>
+  <h1 class="hello" style="margin-bottom:6px">تواصلي مع <span class="mark">الإدارة</span></h1>
+  <p class="q" style="margin-top:0">اضغطي ✉️ عشان تراسلين، أو 📋 عشان تنسخين الإيميل.</p>
+  <input type="search" id="staffQ" class="st-search" placeholder="ابحثي: القبول، الدعم الفني، اسم…" autocomplete="off" aria-label="ابحثي في الإدارة">
+  <div class="sec staff-grp"><h3>الإدارة والأقسام</h3></div>
+  <div class="staff" data-s="العميدة ريف الشعيل r.alsheail@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🏛️</span>
+    <div class="st-txt"><small>العميدة</small><b>ريف الشعيل</b><bdi class="st-mail" dir="ltr">r.alsheail@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:r.alsheail@tvtc.gov.sa" aria-label="مراسلة ريف الشعيل">✉️</a><button class="st-btn" type="button" data-copy="r.alsheail@tvtc.gov.sa" aria-label="نسخ إيميل ريف الشعيل">📋</button></div>
+  </div>
+  <div class="staff" data-s="وكالة شؤون المدربات أ/ أسماء الثنيان a.althunayan@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">👩‍🏫</span>
+    <div class="st-txt"><small>وكالة شؤون المدربات</small><b>أ/ أسماء الثنيان</b><bdi class="st-mail" dir="ltr">a.althunayan@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:a.althunayan@tvtc.gov.sa" aria-label="مراسلة أ/ أسماء الثنيان">✉️</a><button class="st-btn" type="button" data-copy="a.althunayan@tvtc.gov.sa" aria-label="نسخ إيميل أ/ أسماء الثنيان">📋</button></div>
+  </div>
+  <div class="staff" data-s="وكالة شؤون المتدربات أ/ هاجر أبا الخيل Hajar.a@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">👩‍🎓</span>
+    <div class="st-txt"><small>وكالة شؤون المتدربات</small><b>أ/ هاجر أبا الخيل</b><bdi class="st-mail" dir="ltr">Hajar.a@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:Hajar.a@tvtc.gov.sa" aria-label="مراسلة أ/ هاجر أبا الخيل">✉️</a><button class="st-btn" type="button" data-copy="Hajar.a@tvtc.gov.sa" aria-label="نسخ إيميل أ/ هاجر أبا الخيل">📋</button></div>
+  </div>
+  <div class="staff" data-s="قسم القبول والتسجيل أ/ سامية العنزي samiyaha@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">📝</span>
+    <div class="st-txt"><small>قسم القبول والتسجيل</small><b>أ/ سامية العنزي</b><bdi class="st-mail" dir="ltr">samiyaha@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:samiyaha@tvtc.gov.sa" aria-label="مراسلة أ/ سامية العنزي">✉️</a><button class="st-btn" type="button" data-copy="samiyaha@tvtc.gov.sa" aria-label="نسخ إيميل أ/ سامية العنزي">📋</button></div>
+  </div>
+  <div class="staff" data-s="قسم التدريب التعاوني أ/ أمجد التركي m.alturki@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🤝</span>
+    <div class="st-txt"><small>قسم التدريب التعاوني</small><b>أ/ أمجد التركي</b><bdi class="st-mail" dir="ltr">m.alturki@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:m.alturki@tvtc.gov.sa" aria-label="مراسلة أ/ أمجد التركي">✉️</a><button class="st-btn" type="button" data-copy="m.alturki@tvtc.gov.sa" aria-label="نسخ إيميل أ/ أمجد التركي">📋</button></div>
+  </div>
+  <div class="staff" data-s="وحدة التوجيه والإرشاد أ/ أفنان العبدي aaleidy@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">💬</span>
+    <div class="st-txt"><small>وحدة التوجيه والإرشاد</small><b>أ/ أفنان العبدي</b><bdi class="st-mail" dir="ltr">aaleidy@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:aaleidy@tvtc.gov.sa" aria-label="مراسلة أ/ أفنان العبدي">✉️</a><button class="st-btn" type="button" data-copy="aaleidy@tvtc.gov.sa" aria-label="نسخ إيميل أ/ أفنان العبدي">📋</button></div>
+  </div>
+  <div class="staff" data-s="وحدة الأنشطة نوره الزهراني nalzhrani@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🎨</span>
+    <div class="st-txt"><small>وحدة الأنشطة</small><b>نوره الزهراني</b><bdi class="st-mail" dir="ltr">nalzhrani@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:nalzhrani@tvtc.gov.sa" aria-label="مراسلة نوره الزهراني">✉️</a><button class="st-btn" type="button" data-copy="nalzhrani@tvtc.gov.sa" aria-label="نسخ إيميل نوره الزهراني">📋</button></div>
+  </div>
+  <div class="staff" data-s="قسم التدريب الإلكتروني أ/ أفنان العيداني aalobailni@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">💻</span>
+    <div class="st-txt"><small>قسم التدريب الإلكتروني</small><b>أ/ أفنان العيداني</b><bdi class="st-mail" dir="ltr">aalobailni@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:aalobailni@tvtc.gov.sa" aria-label="مراسلة أ/ أفنان العيداني">✉️</a><button class="st-btn" type="button" data-copy="aalobailni@tvtc.gov.sa" aria-label="نسخ إيميل أ/ أفنان العيداني">📋</button></div>
+  </div>
+  <div class="staff" data-s="قسم الدعم الفني أ/ ابتهال السعلو ebtihal.a@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🛠️</span>
+    <div class="st-txt"><small>قسم الدعم الفني</small><b>أ/ ابتهال السعلو</b><bdi class="st-mail" dir="ltr">ebtihal.a@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:ebtihal.a@tvtc.gov.sa" aria-label="مراسلة أ/ ابتهال السعلو">✉️</a><button class="st-btn" type="button" data-copy="ebtihal.a@tvtc.gov.sa" aria-label="نسخ إيميل أ/ ابتهال السعلو">📋</button></div>
+  </div>
+  <div class="staff" data-s="وحدة التطوع أ/ في الحميدي fay.a@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🌱</span>
+    <div class="st-txt"><small>وحدة التطوع</small><b>أ/ في الحميدي</b><bdi class="st-mail" dir="ltr">fay.a@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:fay.a@tvtc.gov.sa" aria-label="مراسلة أ/ في الحميدي">✉️</a><button class="st-btn" type="button" data-copy="fay.a@tvtc.gov.sa" aria-label="نسخ إيميل أ/ في الحميدي">📋</button></div>
+  </div>
+  <div class="sec staff-grp"><h3>أقسام التخصصات</h3></div>
+  <div class="staff" data-s="رئيسة قسم التجارة الإلكترونية مي المانع m.almanea@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🛒</span>
+    <div class="st-txt"><small>رئيسة قسم التجارة الإلكترونية</small><b>مي المانع</b><bdi class="st-mail" dir="ltr">m.almanea@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:m.almanea@tvtc.gov.sa" aria-label="مراسلة مي المانع">✉️</a><button class="st-btn" type="button" data-copy="m.almanea@tvtc.gov.sa" aria-label="نسخ إيميل مي المانع">📋</button></div>
+  </div>
+  <div class="staff" data-s="رئيسة قسم إدارة الفعاليات أ/ أفنان محسن afnaa.m@tvtc.gov.sa">
+    <span class="ic c1" style="margin:0">🎉</span>
+    <div class="st-txt"><small>رئيسة قسم إدارة الفعاليات</small><b>أ/ أفنان محسن</b><bdi class="st-mail" dir="ltr">afnaa.m@tvtc.gov.sa</bdi></div>
+    <div class="st-act"><a class="st-btn" href="mailto:afnaa.m@tvtc.gov.sa" aria-label="مراسلة أ/ أفنان محسن">✉️</a><button class="st-btn" type="button" data-copy="afnaa.m@tvtc.gov.sa" aria-label="نسخ إيميل أ/ أفنان محسن">📋</button></div>
+  </div>
+  <p class="st-empty" id="staffEmpty" hidden>ما لقيت أحد بهذا الاسم. جربي كلمة ثانية.</p>
+  <div class="st-toast" id="stToast" role="status" aria-live="polite" hidden>تم نسخ الإيميل ✓</div>
+  <p class="foot">مشروع تعليمي من طالبات الكلية التقنية للبنات بعنيزة · دليل غير رسمي</p>
+</section>
+<style>
+  .st-back{font:inherit;font-size:13.5px;font-weight:600;background:none;border:0;color:var(--p);padding:0;margin:4px 0 6px;cursor:pointer}
+  .st-search{width:100%;box-sizing:border-box;font:inherit;font-size:16px;padding:11px 14px;border:1px solid var(--line);border-radius:14px;background:var(--surface);color:var(--ink);margin-top:6px}
+  .staff{display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:16px;padding:12px 14px;box-shadow:var(--shadow);margin-bottom:10px}
+  .staff[hidden],.staff-grp[hidden]{display:none!important}
+  .st-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:1px}
+  .st-txt small{color:var(--muted);font-size:12px}
+  .st-txt b{font-size:15px}
+  .st-mail{font-size:12.5px;color:var(--p);overflow-wrap:anywhere;text-align:right;font-family:ui-monospace,Menlo,monospace}
+  .st-act{display:flex;gap:6px;flex:none}
+  .st-btn{width:38px;height:38px;display:grid;place-items:center;border-radius:12px;border:1px solid var(--line);background:var(--p-soft);font-size:17px;text-decoration:none;cursor:pointer;padding:0}
+  .st-empty{color:var(--muted);text-align:center;padding:16px}
+  .st-toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(96px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--surface);padding:8px 16px;border-radius:999px;font-size:13.5px;z-index:50}
+  .st-toast[hidden]{display:none!important}
+</style>
+<script>
+(function(){
+  var q=document.getElementById('staffQ'),toast=document.getElementById('stToast'),t;
+  var norm=function(x){return (x||'').toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي');};
+  q.addEventListener('input',function(){
+    var v=norm(q.value.trim()),n=0;
+    document.querySelectorAll('#s-staff .staff').forEach(function(c){var ok=!v||norm(c.dataset.s).indexOf(v)>=0;c.hidden=!ok;if(ok)n++;});
+    document.querySelectorAll('#s-staff .staff-grp').forEach(function(g){g.hidden=!!v;});
+    document.getElementById('staffEmpty').hidden=n>0;
+  });
+  function fallback(text){var ta=document.createElement('textarea');ta.value=text;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+  document.getElementById('s-staff').addEventListener('click',function(e){
+    var b=e.target.closest('[data-copy]');if(!b)return;
+    var mail=b.dataset.copy;
+    var done=function(){toast.hidden=false;clearTimeout(t);t=setTimeout(function(){toast.hidden=true;},1600);};
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(mail).then(done,function(){fallback(mail);done();});}else{fallback(mail);done();}
+  });
+})();
+</script>
 
 <nav class="tabbar" aria-label="التنقل"><div class="in" dir="rtl">
   <button class="tab" type="button" data-tab="home" aria-current="page" aria-label="الرئيسية"><span class="ti"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7v9a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1z"/></svg></span>الرئيسية</button>
@@ -548,7 +657,7 @@ var ar=function(n){return String(n).replace(/\d/g,function(d){return '٠١٢٣٤
 var done=store.get('done',{});   // id -> furthest step reached (count)
 
 /* ---------- navigation ---------- */
-var screens={home:'s-home',services:'s-services',lesson:'s-lesson',video:'s-video',buildings:'s-buildings',help:'s-help'};
+var screens={home:'s-home',services:'s-services',lesson:'s-lesson',video:'s-video',buildings:'s-buildings',help:'s-help',staff:'s-staff'};
 var vid=document.getElementById('vid');
 function show(name){
   Object.keys(screens).forEach(function(k){document.getElementById(screens[k]).hidden=(k!==name);});
