@@ -6,7 +6,7 @@
 <title>أخبار الكليات التقنية</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Noto+Naskh+Arabic:wght@400;600&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 <style>
 *{box-sizing:border-box}
 html,body{margin:0}
@@ -14,8 +14,8 @@ html,body{margin:0}
 :root{
   --bg:#0d1a2e; --bg-deep:#091324; --surface:#13233d; --fg:#eef1f6; --muted:#a3afc2; --line:#24375a;
   --accent:#d6b46a; --accent-ink:#0d1a2e; --accent-soft:rgba(214,180,106,.12); --mark:rgba(214,180,106,.35); --danger:#f09a8c;
-  --f-display:"Reem Kufi","IBM Plex Sans Arabic",system-ui,sans-serif;
-  --f-read:"Noto Naskh Arabic","Geeza Pro","Times New Roman",serif;
+  --f-display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --f-read:"IBM Plex Sans Arabic","Geeza Pro",system-ui,sans-serif;
   --f-ui:"IBM Plex Sans Arabic",system-ui,-apple-system,"Segoe UI",sans-serif;
   color-scheme:dark;
 }
@@ -56,19 +56,19 @@ button.go:disabled{opacity:.55;cursor:default}
 .err{color:var(--danger)}
 .intent{border-inline-start:3px solid var(--accent);padding-inline-start:12px;display:flex;flex-direction:column;gap:2px}
 .intent b{font-size:12.5px;color:var(--muted);font-weight:500}
-.intent span{font-family:var(--f-read);font-size:17px}
+.intent span{font-family:var(--f-read);font-size:17px;font-weight:500}
 .meta-line{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
 .list{display:flex;flex-direction:column;gap:12px}
 .post{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:flex;flex-direction:column;gap:8px;min-width:0}
 .post-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
 .score{background:var(--accent-soft);color:var(--fg);border-radius:999px;padding:1px 9px;font-weight:600}
-.text{font-family:var(--f-read);font-size:16.5px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.text{font-family:var(--f-read);font-size:17px;font-weight:500;line-height:1.85;white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
 .text.clamp{display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
 mark{background:var(--mark);color:inherit;border-radius:3px;padding:0 1px}
 .why{font-size:13px;color:var(--muted)}
 .answer{background:linear-gradient(180deg,rgba(214,180,106,.14),rgba(214,180,106,.05));border:1px solid var(--accent);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:8px}
 .answer-h{font-family:var(--f-display);font-weight:700;font-size:15px;color:var(--accent)}
-.answer-t{font-family:var(--f-read);font-size:17.5px;line-height:1.95;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.answer-t{font-family:var(--f-read);font-size:18px;font-weight:600;line-height:1.85;margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
 .answer-src{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
 .chip{background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:1px 10px;color:var(--fg);text-decoration:none;font-variant-numeric:tabular-nums}
 a.chip{color:var(--accent)}
@@ -113,7 +113,7 @@ footer{font-size:12.5px;color:var(--muted);text-align:center}
       <a class="ai-btn" id="askGpt" href="https://chatgpt.com/" target="_blank" rel="noopener">اسألي ChatGPT</a>
       <a class="ai-btn" id="askClaude" href="https://claude.ai/new" target="_blank" rel="noopener">اسألي Claude</a>
     </div>
-    <div class="ai-s">يفتح في حسابك، والحساب المجاني يكفي. يجاوب من معلوماته العامة، ومعه أقرب الأخبار لسؤالك.</div>
+    <div class="ai-s">يفتح في حسابك، والحساب المجاني يكفي. ينرسل له سؤالك بس، مثل ما كتبتيه.</div>
   </div>
 
   <div class="status" id="status" hidden><span class="dot"></span><span id="statusText"></span><button type="button" id="stopBtn">إيقاف</button></div>
@@ -495,15 +495,8 @@ ${list}
     const max = all.length ? all[0].score : 0;
     return all.filter(r => r.score >= max * 0.6).sort((a,b) => b.post.id - a.post.id).slice(0, 3).map(r => r.post);
   }
-  function askPrompt(q){
-    const news = topFor(q);
-    let p = "سؤالي: " + q + "\n\n"
-      + "جاوبني بالعربي باختصار ووضوح. استخدم معلوماتك العامة، وابحث في الإنترنت إذا احتجت، والأفضل من المواقع الرسمية مثل المؤسسة العامة للتدريب التقني والمهني tvtc.gov.sa. "
-      + "وهذي أحدث أخبار لقيتها عن سؤالي من أخبار الكليات التقنية، استفد منها، وإذا تغيّرت المعلومة مع الوقت فالأحدث هو المعتمد. "
-      + "إذا كان الجواب فيه مواعيد أو مبالغ وما أنت متأكد منها، قل لي أتأكد من المصدر الرسمي.\n";
-    news.forEach((n, i) => { p += "\nالخبر " + (i + 1) + ":\n" + n.text.replace(/https?:\/\/\S+/g, "").replace(/\n{2,}/g, "\n").trim().slice(0, 320) + "\n"; });
-    return p;
-  }
+  // only the visitor's own words go to ChatGPT / Claude
+  function askPrompt(q){ return q; }
   for (const [id, base] of [["askGpt", "https://chatgpt.com/?q="], ["askClaude", "https://claude.ai/new?q="]]){
     const a = $(id);
     a.addEventListener("click", ev => {
